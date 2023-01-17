@@ -58,4 +58,13 @@ public class GameServiceTests {
 	public void shouldThrowInvalidPositionExceptionIfInputPositionIsNotInRangeOf1to9() {
 		gameService.playGame(Player.X, Position.DEFAULT.getValue());
 	}
+
+	@Test
+	public void shouldDeclareWinnerIfAnyOneOfThreeRowsIsFilledBySamePlayer() {
+		gameService.playGame(Player.X, Position.THREE.getValue());
+		gameService.playGame(Player.O, Position.FOUR.getValue());
+		gameService.playGame(Player.X, Position.TWO.getValue());
+		gameService.playGame(Player.O, Position.NINE.getValue());
+		assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo("GAME_OVER");
+	}
 }
