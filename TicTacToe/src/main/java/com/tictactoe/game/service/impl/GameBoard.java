@@ -19,7 +19,7 @@ public class GameBoard {
 	}
 
 	public char getPlayerInPosition(Position position) {
-		return board[position.getRow()][position.getColumn()];	
+		return board[position.getRow()][position.getColumn()];
 	}
 
 	public int getCountOfPositionsOccupied() {
@@ -31,6 +31,14 @@ public class GameBoard {
 		if (getPlayerInPosition(Position.ONE) != EMPTY_POSITION_ON_BOARD) {
 			return (getPlayerInPosition(Position.ONE) == getPlayerInPosition(Position.TWO)
 					&& getPlayerInPosition(Position.TWO) == getPlayerInPosition(Position.THREE));
+		}
+		return false;
+	}
+
+	public boolean isSecondRowOccupiedBySamePlayer() {
+		if (getPlayerInPosition(Position.FOUR) != EMPTY_POSITION_ON_BOARD) {
+			return (getPlayerInPosition(Position.FOUR) == getPlayerInPosition(Position.FIVE)
+					&& getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.SIX));
 		}
 		return false;
 	}
