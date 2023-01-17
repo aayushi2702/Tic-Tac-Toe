@@ -25,3 +25,26 @@ The rules are described below :
     - All nine squares are filled
 - If a player is able to draw three X’s or three O’s in a row, that player wins
 - If all nine squares are filled and neither player has three in a row, the game is a draw
+
+## **Purpose**
+Develop a simple Tic Tac Toe game written in Java and Spring Boot using Test Driven Development (TDD) process.
+
+## **Prerequisites**
+- Java 17
+- Spring Boot 2.7.5
+- Maven
+
+## **How to build the application**
+1. Clone this repository ```https://github.com/aayushi2702/Tic-Tac-Toe.git```
+2. You can build the project and run the tests by running ```maven clean build```
+
+## **How to run the application**
+- By default, the application will start on port 8080. If you want the application to run on different port 8081, you can pass additional parameter --server.port=8082 while starting the application
+- Once successfully built, you can run the service by using one of below commands:
+
+```
+  java -jar build/libs/TicTacToe.jar
+                    or 
+                    
+  java -jar build/libs/TicTacToe.jar --server.port=8081
+```
