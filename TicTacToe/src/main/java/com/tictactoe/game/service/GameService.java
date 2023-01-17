@@ -23,6 +23,9 @@ public class GameService {
 
 	public GameResponse playGame(Player player, int position) {
 
+		if (isFirstTurn()) {
+			gameBoard.initializeGameBoard();
+		}
 		validateCurrentTurn(player, position);
 		savePlayerOnBoard(player, position);
 		return validateGameAndSendResponse(player);
@@ -37,7 +40,7 @@ public class GameService {
 	}
 
 	private boolean isFirstTurn() {
-		return gameBoard.getCountOfPositionsOccupied() == ZERO;
+		return previousPlayer == ZERO;
 	}
 
 	private boolean isSamePlayerPlayingConsecutiveTurns(Player player) {
