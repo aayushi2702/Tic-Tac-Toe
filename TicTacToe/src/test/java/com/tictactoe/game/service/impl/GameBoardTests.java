@@ -30,4 +30,14 @@ public class GameBoardTests {
 	public void getCountPositionsOccupiedOnGameBoard() {
 		assertThat(gameBoard.getCountOfPositionsOccupied()).isZero();
 	}
+
+	@Test
+	public void checkFirstRowOccupiedBySamePlayer() {
+		gameBoard.setPlayerInPosition(Position.ONE, Player.X);
+		gameBoard.setPlayerInPosition(Position.FIVE, Player.O);
+		gameBoard.setPlayerInPosition(Position.TWO, Player.X);
+		gameBoard.setPlayerInPosition(Position.NINE, Player.O);
+		gameBoard.setPlayerInPosition(Position.THREE, Player.X);
+		assertThat(gameBoard.isFirstRowOccupiedBySamePlayer()).isTrue();
+	}
 }
