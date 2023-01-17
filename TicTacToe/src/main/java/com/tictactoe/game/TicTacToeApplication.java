@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 import com.google.common.base.Predicates;
+import com.tictcatoe.game.exceptions.GlobalExceptionHandler;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -18,6 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
+@Import(GlobalExceptionHandler.class)
 public class TicTacToeApplication {
 
 	public static void main(String[] args) {
