@@ -6,6 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.google.common.base.Predicates;
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -22,7 +26,8 @@ public class TicTacToeApplication {
 
 	@Bean
 	public Docket swaggerConfiguration() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO);
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO).select()
+				.apis(RequestHandlerSelectors.any()).paths(Predicates.not(PathSelectors.regex("/error.*"))).build();
 	}
 
 	public static final Contact DEFAULT_CONTACT = new Contact("Ayushi", "http://localhost:8080/",
