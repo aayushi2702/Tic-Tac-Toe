@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tictactoe.game.enums.Player;
 import com.tictactoe.game.response.ErrorResponse;
 import com.tictactoe.game.service.GameService;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
@@ -21,7 +22,7 @@ public class GameController {
 	}
 
 	@PostMapping(value = "/tictactoe/play/{player}")
-	public ResponseEntity<String> playGameHandler(@PathVariable(name = "player") char player) {
+	public ResponseEntity<String> playGameHandler(@PathVariable(name = "player") Player player) {
 		return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player));
 	}
 

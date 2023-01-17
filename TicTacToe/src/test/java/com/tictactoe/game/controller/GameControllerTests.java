@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.tictactoe.game.enums.Player;
 import com.tictactoe.game.service.GameService;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
 
@@ -27,13 +28,13 @@ class GameControllerTests {
 
 	@Test
 	void playGameAPIShouldGive200Response() throws Exception {
-		when(gameService.playGame('X')).thenReturn("Player X moved first");
+		when(gameService.playGame(Player.X)).thenReturn("Player X moved first");
 		mockMvc.perform(post("/tictactoe/play/{player}", 'X')).andExpect(status().isOk());
 	}
 
 	@Test
 	public void shouldShow403HttpStatusWhenInValidExceptionIsThrown() throws Exception {
-		when(gameService.playGame('O')).thenThrow(new InvalidTurnException("Player X should move first"));
+		when(gameService.playGame(Player.O)).thenThrow(new InvalidTurnException("Player X should move first"));
 		mockMvc.perform(post("/tictactoe/play/{player}", 'O')).andExpect(status().isForbidden());
 	}
 
