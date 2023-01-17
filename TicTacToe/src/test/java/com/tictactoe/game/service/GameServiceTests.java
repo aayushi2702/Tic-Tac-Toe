@@ -40,4 +40,10 @@ public class GameServiceTests {
 		assertThat(gameBoard.getPlayerInPosition(Position.THREE)).isEqualTo(Player.X.getValue());
 	}
 
+	@Test(expected = InvalidTurnException.class)
+	public void shouldThrowInvalidTurnExceptionIfSamePlayerPlaysConsecutiveTurns() {
+		gameService.playGame(Player.X, Position.THREE.getValue());
+		gameService.playGame(Player.X, Position.TWO.getValue());
+	}
+
 }
