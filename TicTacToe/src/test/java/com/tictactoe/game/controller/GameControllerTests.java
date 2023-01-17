@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.tictactoe.game.enums.Player;
+import com.tictactoe.game.response.GameResponse;
 import com.tictactoe.game.service.GameService;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
 
@@ -28,7 +29,7 @@ class GameControllerTests {
 
 	@Test
 	void playGameAPIShouldGive200Response() throws Exception {
-		when(gameService.playGame(Player.X, 0, 0)).thenReturn("Player X moved first");
+		when(gameService.playGame(Player.X, 0, 0)).thenReturn(new GameResponse("GAME_IN_PROGRESS", Player.O, Player.X));
 		mockMvc.perform(post("/tictactoe/play/{player}/{row}/{column}", Player.X, 0, 0)).andExpect(status().isOk());
 	}
 

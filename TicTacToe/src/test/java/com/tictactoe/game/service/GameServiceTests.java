@@ -25,7 +25,7 @@ public class GameServiceTests {
 
 	@Test
 	public void playerXShouldAlwaysGoFirst() {
-		assertThat(gameService.playGame(Player.X, 0, 0)).isEqualTo("Player X moved first");
+		assertThat(gameService.playGame(Player.X, 0, 0).getCurrentPlayer()).isEqualTo(Player.X);
 	}
 
 	@Test(expected = InvalidTurnException.class)

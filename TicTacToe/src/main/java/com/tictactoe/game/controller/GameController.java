@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tictactoe.game.enums.Player;
 import com.tictactoe.game.response.ErrorResponse;
+import com.tictactoe.game.response.GameResponse;
 import com.tictactoe.game.service.GameService;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
 
@@ -22,7 +23,7 @@ public class GameController {
 	}
 
 	@PostMapping(value = "/tictactoe/play/{player}/{row}/{column}")
-	public ResponseEntity<String> playGameHandler(@PathVariable(name = "player") Player player,
+	public ResponseEntity<GameResponse> playGameHandler(@PathVariable(name = "player") Player player,
 			@PathVariable(name = "row") int row, @PathVariable(name = "column") int column) {
 		return ResponseEntity.status(HttpStatus.OK).body(gameService.playGame(player, row, column));
 	}

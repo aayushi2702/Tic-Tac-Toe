@@ -3,6 +3,7 @@ package com.tictactoe.game.service;
 import org.springframework.stereotype.Service;
 
 import com.tictactoe.game.enums.Player;
+import com.tictactoe.game.response.GameResponse;
 import com.tictactoe.game.service.impl.GameBoard;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
 
@@ -15,19 +16,21 @@ public class GameService {
 		this.gameBoard = gameBoard;
 	}
 
-	public String playGame(Player player, int row, int column) {
+	public GameResponse playGame(Player player, int row, int column) {
 
-		String message = null;
 		if (player == Player.X) {
-			message = "Player X moved first";
 			gameBoard.setPlayerInPosition(row, column, player);
 		} else if (isPlayerO(player)) {
 			throw new InvalidTurnException("Player X should move first");
 		}
-		return message;
+		return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
 	}
 
 	private boolean isPlayerO(Player player) {
 		return player == Player.O;
+	}
+
+	private Player getNextPlayer(Player player) {
+		return player == Player.X ? Player.O : Player.X;
 	}
 }
