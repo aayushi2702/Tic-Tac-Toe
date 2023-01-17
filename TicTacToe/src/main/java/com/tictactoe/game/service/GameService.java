@@ -23,17 +23,8 @@ public class GameService {
 
 	public GameResponse playGame(Player player, int position) {
 
-		if (Position.getRowColumnValueOfPosition(position) == Position.DEFAULT) {
-			throw new InvalidPositionException("Input position is invalid. Please provide position in range of 1-9");
-		} else if (isFirstTurn() && isPlayerO(player)) {
-			throw new InvalidTurnException("Player X should move first");
-		} else if (isSamePlayerPlayingConsecutiveTurns(player)) {
-			throw new InvalidTurnException(String.format("Player %s's turn now", getNextPlayer(player)));
-		} else if (gameBoard.getPlayerInPosition(Position.getRowColumnValueOfPosition(position)) != ZERO) {
-			throw new PositionOccupiedException(String.format("Position %s is already occupied", position));
-		}
-		gameBoard.setPlayerInPosition(Position.getRowColumnValueOfPosition(position), player);
-		previousPlayer = player.getValue();
+		validateCurrentTurn(player, position);
+		savePlayerOnBoard(player, position);
 		return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
 	}
 
@@ -51,5 +42,23 @@ public class GameService {
 
 	private boolean isSamePlayerPlayingConsecutiveTurns(Player player) {
 		return previousPlayer == player.getValue();
+	}
+
+	private void validateCurrentTurn(Player player, int position) {
+
+		if (Position.getRowColumnValueOfPosition(position) == Position.DEFAULT) {
+			throw new InvalidPositionException("Input position is invalid. Please provide position in range of 1-9");
+		} else if (isFirstTurn() && isPlayerO(player)) {
+			throw new InvalidTurnException("Player X should move first");
+		} else if (isSamePlayerPlayingConsecutiveTurns(player)) {
+			throw new InvalidTurnException(String.format("Player %s's turn now", getNextPlayer(player)));
+		} else if (gameBoard.getPlayerInPosition(Position.getRowColumnValueOfPosition(position)) != ZERO) {
+			throw new PositionOccupiedException(String.format("Position %s is already occupied", position));
+		}
+	}
+
+	private void savePlayerOnBoard(Player player, int position) {
+		gameBoard.setPlayerInPosition(Position.getRowColumnValueOfPosition(position), player);
+		previousPlayer = player.getValue();
 	}
 }
