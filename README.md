@@ -57,3 +57,13 @@ Develop a simple Tic Tac Toe game written in Java and Spring Boot using Test Dri
    - Input value for player - X or O (Only uppercase allowed)
    - Input range for position - 1 to 9
 4. Reset Tic Tac Toe Game API can be used to reset the game at anypoint of time
+
+## **How to access the code coverage report**
+
+Please follow below-mentioned steps to access code coverage report.
+
+1. Clone the repository ```https://github.com/aayushi2702/Tic-Tac-Toe.git```
+2. Open CMD or Git Bash Terminal
+   - `maven clean build`
+3. After successful build, you can find the report in below path
+   - target/site/jacoco/index.html
