@@ -11,6 +11,7 @@ import com.tictactoe.game.enums.Player;
 import com.tictactoe.game.response.ErrorResponse;
 import com.tictactoe.game.response.GameResponse;
 import com.tictactoe.game.service.GameService;
+import com.tictcatoe.game.exceptions.InvalidPositionException;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
 import com.tictcatoe.game.exceptions.PositionOccupiedException;
 
@@ -36,6 +37,11 @@ public class GameController {
 
 	@ExceptionHandler(value = PositionOccupiedException.class)
 	public ResponseEntity<ErrorResponse> handlePositionOccupiedException(PositionOccupiedException ex) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
+	}
+	
+	@ExceptionHandler(value = InvalidPositionException.class)
+	public ResponseEntity<ErrorResponse> handleInvalidPositionException(InvalidPositionException ex) {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
 	}
 }
