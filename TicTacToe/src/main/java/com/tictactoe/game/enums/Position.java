@@ -2,6 +2,11 @@ package com.tictactoe.game.enums;
 
 import java.util.Arrays;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum Position {
 
 	ONE(1, 0, 0), 
@@ -19,26 +24,9 @@ public enum Position {
 	private final int row;
 	private final int column;
 
-	Position(int value, int row, int column) {
-		this.value = value;
-		this.row = row;
-		this.column = column;
-	}
-
 	public static Position getRowColumnValueOfPosition(int position) {
 		return Arrays.stream(Position.values()).filter(p -> p.getValue() == position).findAny()
 				.orElse(Position.DEFAULT);
 	}
 
-	public int getValue() {
-		return value;
-	}
-
-	public int getRow() {
-		return row;
-	}
-
-	public int getColumn() {
-		return column;
-	}
 }

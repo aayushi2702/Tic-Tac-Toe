@@ -1,4 +1,9 @@
 package com.tictactoe.game.enums;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 
 public enum Player {
 
@@ -7,11 +12,4 @@ public enum Player {
 
 	private final Character value;
 
-	Player(Character value) {
-		this.value = value;
-	}
-
-	public Character getValue() {
-		return value;
-	}
 }
