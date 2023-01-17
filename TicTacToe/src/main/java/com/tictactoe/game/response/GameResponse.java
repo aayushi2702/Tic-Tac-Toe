@@ -1,9 +1,11 @@
 package com.tictactoe.game.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tictactoe.game.enums.Player;
 
 import lombok.Getter;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 public class GameResponse {
 
