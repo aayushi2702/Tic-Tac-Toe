@@ -100,4 +100,8 @@ public class GameBoard {
 		}
 		return false;
 	}
+
+	public boolean isAnyOfTwoDiagonalOccupiedBySamePlayer() {
+		return isFirstDiagonalOccupiedBySamePlayer() || isSecondDiagonalOccupiedBySamePlayer();
+	}
 }
