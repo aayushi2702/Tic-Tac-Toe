@@ -20,6 +20,7 @@ public class GameService {
 		String message = null;
 		if (player == Player.X) {
 			message = "Player X moved first";
+			gameBoard.setPlayerInPosition(row, column, player);
 		} else if (isPlayerO(player)) {
 			throw new InvalidTurnException("Player X should move first");
 		}
