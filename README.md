@@ -48,3 +48,12 @@ Develop a simple Tic Tac Toe game written in Java and Spring Boot using Test Dri
                     
   java -jar build/libs/TicTacToe.jar --server.port=8081
 ```
+
+## **Steps to play the game**
+
+1. Start the application in local machine and use the below swagger link to play the game
+   - http://localhost:8080/swagger-ui/index.html#/
+2. Use Play Tic Tac Toe Game API to play the game. Request body contains two fields - player and position 
+   - Input value for player - X or O (Only uppercase allowed)
+   - Input range for position - 1 to 9
+4. Reset Tic Tac Toe Game API can be used to reset the game at anypoint of time
