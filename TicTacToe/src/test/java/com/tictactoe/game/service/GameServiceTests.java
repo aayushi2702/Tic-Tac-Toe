@@ -67,4 +67,14 @@ public class GameServiceTests {
 		gameService.playGame(Player.O, Position.NINE.getValue());
 		assertThat(gameService.playGame(Player.X, Position.ONE.getValue()).getStatus()).isEqualTo("GAME_OVER");
 	}
+
+	@Test
+	public void shouldDeclareWinnerIfAnyOneOfThreeColumnsIsFilledBySamePlayer() {
+		gameService.playGame(Player.X, Position.TWO.getValue());
+		gameService.playGame(Player.O, Position.THREE.getValue());
+		gameService.playGame(Player.X, Position.ONE.getValue());
+		gameService.playGame(Player.O, Position.SIX.getValue());
+		gameService.playGame(Player.X, Position.FOUR.getValue());
+		assertThat(gameService.playGame(Player.O, Position.NINE.getValue()).getStatus()).isEqualTo("GAME_OVER");
+	}
 }
