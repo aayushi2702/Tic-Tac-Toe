@@ -79,4 +79,9 @@ public class GameBoard {
 		}
 		return false;
 	}
+
+	public boolean isAnyOfThreeColumnsOccupiedBySamePlayer() {
+		return isFirstColumnOccupiedBySamePlayer() || isSecondColumnOccupiedBySamePlayer()
+				|| isThirdColumnOccupiedBySamePlayer();
+	}
 }
